@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Results } from '../../shared/interface';
-import { Card, CardContent, CardMedia, IconButton, Typography } from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardMedia, IconButton, Typography } from '@mui/material';
 import { getCorrectCondition, getFormatPrice } from '../../shared/functions';
 import { GET_ITEM_DETAIL } from '../../shared/api';
 import { toast } from 'react-toastify';
@@ -20,6 +20,13 @@ const ProdcutDetail = () => {
         .catch(err => toast.error(`Error al obtener el producto: ${err}`));
     }
   }, [params]);
+
+  
+  const handleBuyButton = () => {
+    toast.success("Producto agregado al carrito", {
+      position: "bottom-center"
+    })
+  }
 
   return (
     <>
@@ -40,6 +47,9 @@ const ProdcutDetail = () => {
               <Typography variant="body2">Precio: {getFormatPrice(prod.price)}</Typography>
               <Typography variant="body2">{prod.warranty}</Typography>
             </CardContent>
+            <CardActions>
+              <Button onClick={handleBuyButton}> Agregar al carrito</Button>
+            </CardActions>
           </Card>
         )}
       </div>

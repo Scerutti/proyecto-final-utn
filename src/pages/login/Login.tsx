@@ -21,8 +21,7 @@ const Login: React.FC<{}> = () => {
     event.preventDefault();
     
     signInWithEmailAndPassword(auth,user.email, user.password)
-    .then((userCredential)=>{
-
+    .then(()=>{
       toast.success("Inicio correcto",{draggable: false, hideProgressBar: true, autoClose: 2000});
 
       navigate("/")
