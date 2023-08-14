@@ -4,6 +4,7 @@ import { URL_API } from '../../shared/api';
 import DetalleProducto from '../detalle-producto/DetalleProducto';
 import "./home.css";
 import { Grid } from '@mui/material';
+import { toast } from 'react-toastify';
 
 const Home: React.FC<{}> = () => {
   const [productos, setProductos] = React.useState<Results[]>([]);
@@ -17,7 +18,7 @@ const Home: React.FC<{}> = () => {
         const data = await response.json();
         setProductos(data.results);
       } catch (error) {
-        console.error('Error al obtener los productos:', error);
+        toast.error(`Error al obtener los productos: ${error}`);
       }
     };
     
@@ -38,7 +39,7 @@ const Home: React.FC<{}> = () => {
         <div className="product-grid">
           {currentProducts.map((producto) => (
             <Grid container key={producto.id}>
-              <DetalleProducto price={producto.price} title={producto.title} condition={producto.condition} image={producto.thumbnail} />
+              <DetalleProducto id={producto.id} price={producto.price} title={producto.title} condition={producto.condition} image={producto.thumbnail} />
             </Grid>
           ))}
         </div>

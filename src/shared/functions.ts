@@ -9,3 +9,8 @@ export const getFormatPrice = (amount: number) => {
 
     return formattedAmount;
 }
+
+export const getCorrectCondition = (cond: string) => {
+    if(cond === "new") return "Nuevo";
+    return "Usado"
+  }

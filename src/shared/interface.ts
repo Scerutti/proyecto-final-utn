@@ -5,4 +5,5 @@ export interface Results {
     currency_id: string;
     price: number;
     thumbnail: string;
+    warranty: string
 }

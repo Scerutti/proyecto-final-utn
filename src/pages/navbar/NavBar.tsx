@@ -21,7 +21,7 @@ const NavBar: React.FC<NavBarProps> = (props: NavBarProps) => {
             toast.success("Sesión cerrada", { draggable: false, hideProgressBar: true, autoClose: 2000 });
             navigate('/');
         } catch (error) {
-            console.error('Error al cerrar sesión: ', error);
+            toast.error(`Error al cerrar sesión: ${error} `);
         }
     };
 

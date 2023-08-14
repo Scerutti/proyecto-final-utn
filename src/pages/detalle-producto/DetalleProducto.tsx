@@ -1,11 +1,13 @@
 import React from 'react'
 import { toast } from 'react-toastify';
 import "./detalle.css"
-import { getFormatPrice } from '../../shared/functions';
+import { getCorrectCondition, getFormatPrice } from '../../shared/functions';
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 
 interface DetalleProductoProps {
+  id: string;
   title: string;
   price: number;
   condition: string;
@@ -13,12 +15,7 @@ interface DetalleProductoProps {
 }
 
 const DetalleProducto: React.FC<DetalleProductoProps> = (props: DetalleProductoProps) => {
-
-
-  const getCorrectCondition = (cond: string) => {
-    if(cond === "new") return "Nuevo";
-    return "Usado"
-  }
+  const navigate = useNavigate();
 
   const handleBuyButton = () => {
     toast.success("Producto agregado al carrito", {
@@ -28,7 +25,7 @@ const DetalleProducto: React.FC<DetalleProductoProps> = (props: DetalleProductoP
 
   return (
     <Grid item>
-      <Card>
+      <Card onClick={() => navigate(`/product/${props.id}`)} className='card-focus'>
         <CardMedia
           component={"img"}
           alt={props.title}

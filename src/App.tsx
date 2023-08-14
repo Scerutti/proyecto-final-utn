@@ -6,6 +6,7 @@ import Home from "./pages/home/Home";
 import React from "react";
 import { User, onAuthStateChanged } from "firebase/auth";
 import { auth } from "./shared/firebaseConfig";
+import ProdcutDetail from "./pages/porduct-detail/ProdcutDetail";
 
 function App() {
   const [user, setUser] = React.useState<User | null>(null);
@@ -25,7 +26,13 @@ function App() {
       <Routes>
         <Route path="/registro" element={<Registro />} />
         <Route path="/login" element={<Login />} />
-        {user ? <Route path="/" element={<Home />} /> : <Route path="/" element={<Navigate to="/login" />} />}
+        {user ? 
+          <>
+            <Route path="/" element={<Home />} /> 
+            <Route path="/product/:id" element={<ProdcutDetail />} /> 
+          </>
+          : <Route path="/" element={<Navigate to="/login" />} />
+          }
       </Routes>
     </BrowserRouter>
   );
